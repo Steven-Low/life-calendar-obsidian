@@ -15,19 +15,13 @@ const DEFAULT_SETTINGS: CalendarSettings = {
 	color: "#FFD700",
 }
 
-export default class HelloSeikaiPlugin extends Plugin {
+
+export default class LifeCalendarPlugin extends Plugin {
 	settings: CalendarSettings;
 
 	async onload() {
 		await this.loadSettings();
 
-		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon('dice', 'Greet', (evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('Welcome to the human civilization!');
-		});
-		// Perform additional things with the ribbon
-		ribbonIconEl.addClass('life-calendar');
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
 		this.addSettingTab(new SampleSettingTab(this.app, this));
@@ -35,8 +29,8 @@ export default class HelloSeikaiPlugin extends Plugin {
 		//@ts-ignore
 		window.renderLifeCalendar = (el:HTMLElement, calendarSettings?: CalendarSettings): void => {
 
-			const birthYear: number = Number(this.settings.birth);
-			const averageAge: number = Number(this.settings.average);
+			const birthYear: number = Number(calendarSettings?.birth || this.settings.birth);
+			const averageAge: number = Number(calendarSettings?.average || this.settings.average);
 
 			const lifeCalendarGraphDiv = createDiv({
 				cls: "life-calendar-graph",
@@ -138,9 +132,9 @@ export default class HelloSeikaiPlugin extends Plugin {
 
 
 class SampleSettingTab extends PluginSettingTab {
-	plugin: HelloSeikaiPlugin;
+	plugin: LifeCalendarPlugin;
 
-	constructor(app: App, plugin: HelloSeikaiPlugin) {
+	constructor(app: App, plugin: LifeCalendarPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
