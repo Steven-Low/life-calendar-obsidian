@@ -54,7 +54,6 @@
 .life-calendar-boxes li {
     position: relative;
     font-size: 0.75em;
-    background-color: #FFD700; /* Gold color */
 }
 
 .theme-dark .life-calendar-boxes .isEmpty {

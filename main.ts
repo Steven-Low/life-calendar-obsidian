@@ -19,6 +19,11 @@ const DEFAULT_SETTINGS: CalendarSettings = {
 export default class LifeCalendarPlugin extends Plugin {
 	settings: CalendarSettings;
 
+	public validateColorInput(value: string) {
+		const colorRegex = /^(#[0-9a-f]{3,6}|rgba?\(\s*\d+%?\s*,\s*\d+%?\s*,\s*\d+%?\s*(,\s*\d+(\.\d+)?%?)?\s*\))$/i;
+		return colorRegex.test(value);
+	}
+
 	async onload() {
 		await this.loadSettings();
 
@@ -31,6 +36,8 @@ export default class LifeCalendarPlugin extends Plugin {
 
 			const birthYear: number = Number(calendarSettings?.birth || this.settings.birth);
 			const averageAge: number = Number(calendarSettings?.average || this.settings.average);
+			const color: string | undefined = this.validateColorInput(calendarSettings?.color||"") ? calendarSettings?.color : this.settings.color;
+		
 
 			const lifeCalendarGraphDiv = createDiv({
 				cls: "life-calendar-graph",
@@ -91,7 +98,7 @@ export default class LifeCalendarPlugin extends Plugin {
 						box.classNames?.push("hasData")
 						box.month = month;
 						box.year = year;
-						box.backgroundColor = this.settings.color;
+						box.backgroundColor = color;
 					} else box.classNames?.push("isEmpty")
 
 					boxes.push(box)
@@ -144,16 +151,14 @@ class SampleSettingTab extends PluginSettingTab {
 		})
 	}
 
-	private validateColorInput(value: string) {
-		const colorRegex = /^(#[0-9a-f]{3,6}|rgba?\(\s*\d+%?\s*,\s*\d+%?\s*,\s*\d+%?\s*(,\s*\d+(\.\d+)?%?)?\s*\))$/i;
-		return colorRegex.test(value);
-	}
+
 
 	display(): void {
 		const {containerEl} = this;
 
 		containerEl.empty();
 		containerEl.createEl("h2", {text: "Life Calendar Settings"})
+		this.displayHelp(containerEl);
 		
 		const inputBirth = createEl("div", {parent:containerEl});
 		new Setting(inputBirth)
@@ -187,7 +192,7 @@ class SampleSettingTab extends PluginSettingTab {
 				.setPlaceholder('Enter valid css color')
 				.setValue("#FFD700")
 				.onChange(async (value) => {
-					if (this.validateColorInput(value)) {
+					if (this.plugin.validateColorInput(value)) {
 						this.plugin.settings.color = value;
 						await this.plugin.saveSettings();
 					} else {

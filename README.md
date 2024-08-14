@@ -1,6 +1,8 @@
 # Life Calendar Plugin Obsidian
 
 Visualize your lifespan with a heatmap calendar. 
+![sample image](image.png)
+
 
 ## How to install
 
@@ -14,6 +16,24 @@ Visualize your lifespan with a heatmap calendar.
 - Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/life-calendar-plugin/`.
 
 ## How to use
+1) Create a DataviewJS block where you want the Life Heatmap Calendar to display. (Please install DataviewJS from the community plugin and enable Javascript Queries.)
+2) Pass the data (optional) to the Life Heatmap Calendar using renderLifeCalendar().
+
+### Examples
+```dataviewjs
+renderLifeCalendar(this.container);
+```
+
+```dataviewjs
+const lifeData = {
+    birth: 2010,
+    average: 72,
+    color: "#11ff11"
+}
+renderLifeCalendar(this.container, lifeData);
+```
+
+
 
 
 ## Funding URL
