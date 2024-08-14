@@ -1,0 +1,11 @@
+{
+	"id": "life-calendar",
+	"name": "Life Calendar",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Visualize your lifespan with a heatmap calendar.",
+	"author": "Steven",
+	"authorUrl": "https://github.com/Steven-Low/life-calendar-obsidian.git",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": false
+}

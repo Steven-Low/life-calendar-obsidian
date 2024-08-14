@@ -1,0 +1,78 @@
+
+.life-calendar-graph > * {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.life-calendar-graph {
+    font-size: 0.65em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        'year months'
+        'days boxes';
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    width: 100%;
+}
+
+.life-calendar-months {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-area: months;
+    margin-top: 0.1em;
+    margin-bottom: 0.3em;
+    grid-gap: 0.3em;
+}
+
+.life-calendar-days {
+    grid-area: days;
+    margin-left: 0.1em;
+    margin-right: 0.3em;
+    white-space: nowrap;
+}
+
+.life-calendar-boxes {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(12, minmax(0, 1fr)); /* 12 rows for 12 months */
+    
+    grid-area: boxes;
+}
+
+.life-calendar-days,
+.life-calendar-boxes {
+    display: grid;
+    grid-gap: 0.3em;
+}
+
+.life-calendar-year {
+    grid-area: year;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.life-calendar-boxes li {
+    position: relative;
+    font-size: 0.75em;
+    background-color: #FFD700; /* Gold color */
+}
+
+.theme-dark .life-calendar-boxes .isEmpty {
+    background: #333;
+}
+
+.life-calendar-boxes li:not(.task-list-item)::before {
+    content: unset;
+}
+
+.life-calendar-boxes .internal-link {
+    text-decoration: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.life-calendar-boxes .today {
+    border: solid 1px rgb(61, 61, 61);
+}
