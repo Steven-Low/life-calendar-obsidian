@@ -173,7 +173,7 @@ class SampleSettingTab extends PluginSettingTab {
 				}));
 
 		const inputAverageAge = createEl("div", {parent:containerEl});
-		new Setting(inputBirth)
+		new Setting(inputAverageAge)
 			.setName('Average Age')
 			.setDesc('Live until 2077')
 			.addText(text => text
