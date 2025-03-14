@@ -12,7 +12,7 @@ Visualize your lifespan with a heatmap calendar.
 - `npm run dev` to start compilation in watch mode. The .ts file will compile into .js file.
 
 ## How to install ?
-- Clone this repo.
+- [Download this package](https://github.com/Steven-Low/life-calendar-obsidian/releases/tag/1.0.0)
 - Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/life-calendar-plugin/`.
 
 ## How to use
